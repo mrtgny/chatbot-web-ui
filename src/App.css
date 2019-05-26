@@ -1,0 +1,159 @@
+body {
+    background: url("./images/coffee-shop-bg.jpg") left center no-repeat;
+    background-size: cover;
+
+}
+
+.container {
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: calc(100vh - 32px);
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.big-cell {
+    margin: 16px;
+    padding: 16px;
+}
+
+.cell {
+    margin: 8px;
+    padding: 8px;
+}
+
+.margin-center {
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.chatbot-chat-item {
+    max-width: 60%;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    color: white;
+    animation: 0.4s backwards bubble 0.4s;
+}
+
+@keyframes bubble {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.user-chat-item {
+    max-width: 60%;
+    background-color: #cccccc;
+    border-radius: 10px;
+    word-break: break-word;
+    animation: 0.4s backwards bubble;
+}
+
+.send-button-disabled {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    font-size: 24px;
+    color: white;
+    background-color: #cccccc;
+    cursor: pointer;
+}
+
+.send-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    font-size: 24px;
+    color: white;
+    background-color: #2196F3;
+    cursor: pointer;
+}
+
+.date-text {
+    float: right;
+    font-size: 12px;
+}
+
+.spread {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.option-item {
+    display: inline-block;
+    background-color: orange;
+    text-align: center;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.list-item {
+    background-color: orange;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    animation: 0.4s backwards acordion 0.4s;
+}
+
+.list {
+    display: flex;
+}
+
+@keyframes acordion {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+
+}
+
+.clickable:hover {
+    cursor: pointer;
+    background-color: #bbb;
+}
+
+.clickable:focus {
+    cursor: pointer;
+    background-color: #bbb;
+}
+
+.clickable {
+    outline: none;
+}
+
+.text-field {
+    padding: 8px;
+    margin: 8px;
+    background-color: #eeeeee;
+    font-size: 14px;
+}
+
+input, textarea {
+    outline: none;
+    border: 1px solid #cccccc;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid #a0a0a0;
+}
