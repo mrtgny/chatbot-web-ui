@@ -2,12 +2,51 @@ import React from 'react';
 import './App.css';
 import {dateToStr} from "./utils";
 import sendIcon from "./images/send-icon.png";
+import coffeeCup from "./images/coffee-cup.png";
 
 const server = "localhost:8000";
+
 //const server = "10.122.27.70:8000";
 
 class App extends React.Component {
 
+    constructor(props, context) {
+        super(props, context);
+        this.state = {init: false};
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({init: true})
+        }, 3000)
+    }
+
+
+    render() {
+        return this.state.init ? <ChatBot/> : <Welcome/>
+    }
+}
+
+const Welcome = () => {
+    return (
+        <div className="page center">
+            <div className="container">
+                <div className="welcome-container" style={{height: "100%"}}>
+                    <div className="spread-column" style={{height: "100%"}}>
+                        <div className="welcome-title">
+                            Welcome to CoffeeInLove
+                        </div>
+                        <div className="welcome-dsc">
+                            Have you taste our delicious coffees?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+class ChatBot extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.connection = new WebSocket('ws://' + server);
@@ -63,21 +102,14 @@ class ChatContainer extends React.Component {
             console.log("json", json);
             if (json && !!json.suggest)
                 return;
-            //console.log("json", json);
+
             this.setState({
-                messages: [...this.state.messages, ...json]
+                messages: [...this.state.messages.filter(i => json.status === 'typing' || i.status !== 'typing'), json]
             }, () => {
                 const container = document.getElementById("chat-container");
                 container.scrollTo(0, container.scrollHeight);
-
-                // setTimeout(() => {
-                //     container.scrollTo(0, container.scrollHeight)
-                // }, 300);
-                // setTimeout(() => {
-                //     container.scrollTo(0, container.scrollHeight)
-                // }, 800);
+                console.log(this.state.messages)
             })
-            // handle incoming message
         };
     }
 
@@ -96,14 +128,41 @@ const ChatContent = (props) => {
     const {messages, connection} = props;
     //console.log("messages", messages);
     return messages.map((item, index) => {
-        const {message, list, options} = item;
+        const {name, message, list, options, status} = item;
         return [
-            message ? <ChatItem key={index + "c"} message={item}/> : null,
+            name ? <Coffee name={name}/> : null,
+            status === 'typing' ? <Typing key={index + "t"} message={item}/> : null,
+            !!message ? <ChatItem key={index + "c"} message={item}/> : null,
             (list || []).length ? <List key={index + "l"} message={item} connection={connection}/> : null,
             (options || []).length ? <Options key={index + "o"} options={options} connection={connection}/> : null
         ].filter(i => i)
     })
 };
+
+const Coffee = props => {
+    const {name} = props;
+    return (
+        <div className="coffee-cup-container">
+            <img src={coffeeCup} alt="Coffee Cup" className="coffee-cup-image"/>
+            <div className="coffee-cup-name">
+                {name}
+            </div>
+        </div>
+    )
+};
+
+const Typing = () => {
+    return (
+        <div style={{display: "flex", justifyContent: "flex-start"}}>
+            <div className="cell chatbot-chat-item"
+                 style={{position: "relative", width: 25, padding: "16px 16px 24px 16px"}}>
+                <span className="dot-bounce" style={{animationDelay: "0", left: 10}}>.</span>
+                <span className="dot-bounce" style={{animationDelay: "0.2s", left: 20}}>.</span>
+                <span className="dot-bounce" style={{animationDelay: "0.4s", left: 30}}>.</span>
+            </div>
+        </div>
+    )
+}
 
 const Options = (props) => {
     const {options, connection} = props;
@@ -215,7 +274,7 @@ class TextField extends React.Component {
 
     render() {
         return (
-            <div className={'center'} style={{position: "relative"}}>
+            <div className={'center input-container'} style={{position: "relative"}}>
                 <input type="text"
                        id={"text-field"}
                        onChange={e => this.onChange(e.target.value)}
@@ -224,7 +283,7 @@ class TextField extends React.Component {
                        onKeyPress={e => e.key === "Enter" ? this.onSend() : null}
                 />
                 <Suggestions connection={this.props.connection}
-                             message={this.state.messages}
+                             message={this.state.message}
                              onChange={this.onChange}
                 />
                 <SendButton disabled={!this.state.message} onSend={this.onSend}/>
@@ -297,6 +356,9 @@ class Suggestions extends React.Component {
 
 
     render() {
+        const {message} = this.props;
+        if (!message)
+            return null;
         return (
             <div style={{position: "absolute", left: 8, bottom: 64, backgroundColor: "#eee"}}>
                 {(this.state.suggestions || []).map((suggest, index) => {

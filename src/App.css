@@ -10,6 +10,13 @@ body {
     height: calc(100vh - 32px);
 }
 
+@media screen and (max-width: 720px) {
+    .container {
+        width: 100%;
+        height: 100vh;
+    }
+}
+
 .page {
     width: 100%;
     min-height: 100vh;
@@ -39,11 +46,28 @@ body {
     width: 100%;
 }
 
+.dot-bounce {
+    animation: 0.4s bounce linear infinite alternate;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    font-size: 48px;
+    font-weight: bolder;
+}
+
+@keyframes bounce {
+    from {
+        bottom: 0px;
+    }
+    to {
+        bottom: 16px;
+    }
+}
+
 .chatbot-chat-item {
     max-width: 60%;
-    background-color: cornflowerblue;
+    background-color: #eee;
     border-radius: 10px;
-    color: white;
     animation: 0.4s backwards bubble 0.4s;
 }
 
@@ -58,8 +82,9 @@ body {
 
 .user-chat-item {
     max-width: 60%;
-    background-color: #cccccc;
+    background-color: cornflowerblue;
     border-radius: 10px;
+    color: white;
     word-break: break-word;
     animation: 0.4s backwards bubble;
 }
@@ -110,9 +135,18 @@ body {
     text-align: center;
     color: white;
     border-radius: 10px;
+    max-width: 500px;
+    margin: 8px auto;
     cursor: pointer;
     animation: 0.4s backwards acordion 0.4s;
+    transition: 0.4s;
 }
+
+.list-item:hover {
+    background-color: rgba(255, 165, 0, 0.5);
+    transition: 0.4s;
+}
+
 
 .list {
     display: flex;
@@ -146,8 +180,70 @@ body {
     padding: 8px;
     margin: 8px;
     background-color: #eeeeee;
+    border-radius: 5px;
     font-size: 14px;
 }
+
+.welcome-title {
+    font-size: 64px;
+    font-weight: bolder;
+    color: white;
+    margin: 16px;
+    padding: 16px;
+    text-align: center;
+}
+
+.welcome-dsc {
+    font-size: 24px;
+    color: white;
+    margin: 16px;
+    padding: 16px;
+    text-align: center;
+    font-style: italic;
+}
+
+.spread-column {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    animation: 3s fade-in-out backwards;
+}
+
+.input-container {
+    animation: 0.4s bubble backwards;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.coffee-cup-container {
+    position: relative;
+}
+
+.coffee-cup-image {
+    width: 200px;
+    height: auto;
+}
+
+.coffee-cup-name {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    font-family: "Hand Written", serif;
+    font-size: 44px;
+}
+
 
 input, textarea {
     outline: none;
