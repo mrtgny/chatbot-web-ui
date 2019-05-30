@@ -227,23 +227,57 @@ body {
 }
 
 .coffee-cup-container {
+    display: inline-block;
     position: relative;
+    margin: 16px;
+    animation: 0.4s bubble backwards;
 }
 
 .coffee-cup-image {
-    width: 200px;
     height: auto;
 }
 
 .coffee-cup-name {
     color: white;
     position: absolute;
-    bottom: 20px;
-    left: 40px;
-    font-family: "Hand Written", serif;
-    font-size: 44px;
+    font-family: "Hand Written 2", serif;
+    font-size: 64px;
+    top: 50%;
+    left: 16px;
+    width: 162px;
+    text-align: center;
 }
 
+.coffee-cup-coffee {
+    background-color: #eeeeee;
+    color: red;
+    border-radius: 10px;
+    width: 100%;
+    padding: 4px 0;
+    text-align: center;
+}
+
+.badge {
+    position: absolute;
+    right: -16px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #eee;
+    color: red;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Hand Written';
+    src: url("./fonts/handwritten.ttf");
+}
+
+@font-face {
+    font-family: 'Hand Written 2';
+    src: url("./fonts/handwritten2.otf");
+}
 
 input, textarea {
     outline: none;

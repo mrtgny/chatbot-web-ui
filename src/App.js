@@ -128,9 +128,9 @@ const ChatContent = (props) => {
     const {messages, connection} = props;
     //console.log("messages", messages);
     return messages.map((item, index) => {
-        const {name, message, list, options, status} = item;
+        const {name, message, list, options, status, coffees} = item;
         return [
-            name ? <Coffee name={name}/> : null,
+            name ? <Coffees key={"n"} name={name} coffees={coffees}/> : null,
             status === 'typing' ? <Typing key={index + "t"} message={item}/> : null,
             !!message ? <ChatItem key={index + "c"} message={item}/> : null,
             (list || []).length ? <List key={index + "l"} message={item} connection={connection}/> : null,
@@ -139,13 +139,47 @@ const ChatContent = (props) => {
     })
 };
 
+const Coffees = props => {
+    const {name, coffees} = props;
+    return coffees.map((coffee, index) => {
+        console.log("coffee", coffee)
+        return (
+            <div key={index} style={{display: 'inline-block'}}>
+                <Coffee name={name} size={coffee.size} coffee={coffee.coffee} count={coffee.count}/>
+            </div>
+        )
+    })
+}
+//two tall filter coffee three grande cold brew four venti latte
+//2 tall filter coffee 3 grande cold brew 4 venti latte
+
 const Coffee = props => {
-    const {name} = props;
+    const {name, size, count, coffee} = props;
+    const sizes = {
+        tall: 100,
+        grande: 150,
+        venti: 200
+    };
+    const width = sizes[size];
+    const nameStyle = {
+        width: width - 30,
+        fontSize: (width / Math.max(...name.split(" ").map(i => i.length))) + 10,
+        marginTop: 16 - width / Math.max(...name.split(" ").map(i => i.length)),
+    };
+
     return (
         <div className="coffee-cup-container">
-            <img src={coffeeCup} alt="Coffee Cup" className="coffee-cup-image"/>
-            <div className="coffee-cup-name">
+            <div className="badge">
+                <div className="center" style={{height: "100%"}}>
+                    x{count}
+                </div>
+            </div>
+            <img src={coffeeCup} alt="Coffee Cup" className="coffee-cup-image" style={{width}}/>
+            <div className="coffee-cup-name" style={nameStyle}>
                 {name}
+            </div>
+            <div className="coffee-cup-coffee">
+                {coffee}
             </div>
         </div>
     )
