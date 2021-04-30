@@ -4,9 +4,7 @@ import {dateToStr} from "./utils";
 import sendIcon from "./images/send-icon.png";
 import coffeeCup from "./images/coffee-cup.png";
 
-const server = "localhost:8000";
-
-//const server = "10.122.27.70:8000";
+const server = "coffeechatbot.cf/ws";
 
 class App extends React.Component {
 
@@ -89,9 +87,6 @@ class ChatContainer extends React.Component {
     componentWillMount() {
         const {connection} = this.props;
         connection.onmessage = (message) => {
-            // try to decode json (I assume that each message
-            // from server is json)
-            //console.log("chat container cwm", message)
             let json;
             try {
                 json = JSON.parse(message.data);
@@ -99,7 +94,7 @@ class ChatContainer extends React.Component {
                 console.log('This doesn\'t look like a valid JSON: ', message.data);
                 return;
             }
-            console.log("json", json);
+
             if (json && !!json.suggest)
                 return;
 
@@ -108,7 +103,6 @@ class ChatContainer extends React.Component {
             }, () => {
                 const container = document.getElementById("chat-container");
                 container.scrollTo(0, container.scrollHeight);
-                console.log(this.state.messages)
             })
         };
     }
@@ -126,7 +120,6 @@ class ChatContainer extends React.Component {
 
 const ChatContent = (props) => {
     const {messages, connection} = props;
-    //console.log("messages", messages);
     return messages.map((item, index) => {
         const {name, message, list, options, status, coffees} = item;
         return [
@@ -142,7 +135,6 @@ const ChatContent = (props) => {
 const Coffees = props => {
     const {name, coffees} = props;
     return coffees.map((coffee, index) => {
-        console.log("coffee", coffee)
         return (
             <div key={index} style={{display: 'inline-block'}}>
                 <Coffee name={name} size={coffee.size} coffee={coffee.coffee} count={coffee.count}/>
@@ -352,7 +344,6 @@ class Suggestions extends React.Component {
         const {onChange} = this.props
         const textField = document.getElementById("text-field");
         const value = textField.value;
-        console.log("value", value);
         if (suggest.indexOf(value) === 0) {
             onChange(suggest + " ");
         } else {
@@ -369,8 +360,6 @@ class Suggestions extends React.Component {
         const {connection} = this.props;
         const old = connection.onmessage
         connection.onmessage = (message) => {
-            //console.log("if", message)
-
             let json;
             try {
                 json = JSON.parse(message.data);
@@ -382,7 +371,6 @@ class Suggestions extends React.Component {
             if (json && json.suggest) {
                 this.setState({suggestions: json.message})
             } else {
-                //console.log("else", message)
                 old(message)
             }
         }
