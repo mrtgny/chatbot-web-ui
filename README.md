@@ -2,4 +2,4 @@
 Coffee Shop Chatbot Web UI
 
 # Demo
-A live [demo](http://coffeechatbot.cf)
+A live [demo](https://coffeebot.mrtgny.com)
