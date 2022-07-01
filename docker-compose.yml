@@ -1,0 +1,11 @@
+version: '3'
+services:
+  nodejs-server:
+    build:
+      context: ./
+    ports:
+      - "3002:3000"
+    container_name: coffeebot-frontend
+    volumes:
+       - ./:/usr/src/app/mrtgny/website
+       - /usr/src/app/mrtgny/website/node_modules
