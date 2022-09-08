@@ -1,9 +1,9 @@
 version: '3'
 services:
   nodejs-server:
+    restart: always
     build:
       context: ./
     ports:
       - "3002:80"
     container_name: coffeebot-frontend
-    restart: always
