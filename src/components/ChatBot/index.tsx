@@ -18,8 +18,8 @@ const ChatBot = () => {
 
     return (
         <div className="page flex justify-center items-center">
-            <div className="container flex flex-col translate-x-0" style={{ height }}>
-                <div className="m-2 p-2 overflow-auto" id="chat-container">
+            <div className="container flex flex-col translate-x-0" style={{ height: (height as number) - 86 }}>
+                <div className="m-2 p-2 overflow-auto" id="chat-container" style={{ height: 'calc(100% - 56px)' }}>
                     <ChatContainer />
                 </div>
                 <div className="fixed w-full bottom-0">
