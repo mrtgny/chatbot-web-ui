@@ -255,10 +255,10 @@
     "@react-spring/shared" "~9.5.2"
     "@react-spring/types" "~9.5.2"
 
-"@reactivers/use-socket@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@reactivers/use-socket/-/use-socket-1.0.1.tgz#3b4ff1844fb4a9ba722975b88b4a01ceef11e307"
-  integrity sha512-7xwEXtwxbghiwI5SWSxrAwIA18nVBcwQwGwXELvVJwLdwINLXAVYBGm+ekuqz5ztDHIom0EfheSiStwnBJ0AQQ==
+"@reactivers/use-socket@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@reactivers/use-socket/-/use-socket-1.0.2.tgz#117f786e093e70fb0d2461f1235744e821c44248"
+  integrity sha512-6wpqeI/mocrA6uPPjmHYCiBKE1qIOHLiah1JX1ycDRWYaf2QF6GYtTvA/6bBpvAvGM1/1LPi+FWmax7YvF+E7g==
   dependencies:
     "@types/node" "^12.0.0"
     "@types/react" "^17.0.0"
