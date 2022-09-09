@@ -4,9 +4,9 @@ import Suggestions from "components/Suggestions";
 import { useEffect, useRef, useState } from "react";
 
 const TextField = () => {
+    const { connect, sendData } = useSocket()
     const [message, setMessage] = useState('');
     const textField = useRef<HTMLInputElement>(null);
-    const { connect, sendData } = useSocket({ url: "coffeebot.mrtgny.com", wss: true })
 
     const sendMessage = (messageData) => {
         sendData(JSON.stringify(messageData));
@@ -35,10 +35,8 @@ const TextField = () => {
         setMessage(value);
     }
 
-
-
     useEffect(() => {
-        connect({ url: "coffeebot.mrtgny.com/ws" })
+        connect()
     }, [connect])
 
     return (

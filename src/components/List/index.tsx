@@ -5,7 +5,7 @@ import { IListProps } from "./types";
 
 const List: FC<IListProps> = ({ message }) => {
     const { list } = message;
-    const { connect, sendData } = useSocket({ wss: true })
+    const { connect, sendData } = useSocket()
 
     const onClick = (listItem: string) => {
         sendData(JSON.stringify({
@@ -16,7 +16,7 @@ const List: FC<IListProps> = ({ message }) => {
     }
 
     useEffect(() => {
-        connect({ url: "coffeebot.mrtgny.com/ws" })
+        connect()
     }, [connect])
 
     return (

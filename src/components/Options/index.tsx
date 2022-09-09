@@ -4,6 +4,8 @@ import { FC, useEffect } from "react";
 import { IOptionsProps } from "./types";
 
 const Options: FC<IOptionsProps> = ({ options }) => {
+    const { connect, sendData } = useSocket()
+
     const onClick = (option: string) => {
         sendData(JSON.stringify({
             author: "user",
@@ -12,9 +14,8 @@ const Options: FC<IOptionsProps> = ({ options }) => {
         }))
     }
 
-    const { connect, sendData } = useSocket({ wss: true })
     useEffect(() => {
-        connect({ url: "coffeebot.mrtgny.com/ws" })
+        connect()
     }, [connect])
 
 

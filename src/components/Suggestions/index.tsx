@@ -1,10 +1,11 @@
 import { useSocket } from "@reactivers/use-socket";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { ISuggestionsProps } from "./types";
 
 const Suggestions: FC<ISuggestionsProps> = ({ textFieldRef, onChange, message }) => {
     const [suggestions, setSuggestions] = useState([]);
 
+    const { connect } = useSocket()
 
     const onSelect = (suggest) => {
         if (suggest.indexOf(message) === 0) {
@@ -17,17 +18,16 @@ const Suggestions: FC<ISuggestionsProps> = ({ textFieldRef, onChange, message })
         textFieldRef.current.focus()
     }
 
-    const onMessage = (_, json) => {
+    const onMessage = useCallback((_, json) => {
         if (json && json.suggest) {
             setSuggestions(json.message)
         }
-    }
+    }, [])
 
-    const { connect } = useSocket({ url: "coffeebot.mrtgny.com", wss: true, onMessage })
 
     useEffect(() => {
-        connect({ url: "coffeebot.mrtgny.com/ws" })
-    }, [connect])
+        connect({ onMessage })
+    }, [connect, onMessage])
 
     if (!message) return null;
     return (

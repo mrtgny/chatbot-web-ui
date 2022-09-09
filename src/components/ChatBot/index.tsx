@@ -1,24 +1,27 @@
 import { useSocket } from "@reactivers/use-socket";
 import ChatContainer from "components/ChatbotContainer";
 import TextField from "components/TextField";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { isBrowser } from "utils/functions";
 
 const ChatBot = () => {
+    const { connect, sendData } = useSocket()
 
-    const onOpen = () => {
+    const onOpen = useCallback(() => {
         sendData(JSON.stringify({ message: "init-chatbot" }))
-    }
+    }, [])
 
-    const { connect, sendData } = useSocket({ wss: true, onOpen })
 
     useEffect(() => {
-        connect({ url: "coffeebot.mrtgny.com/ws" })
-    }, [connect])
+        connect({ onOpen })
+    }, [connect, onOpen])
+
+    const height = isBrowser() ? `calc(${window.innerHeight}px - 86px)` : `calc(100vh - 86px)`;
 
     return (
         <div className="page flex justify-center items-center">
             <div className="container flex flex-col justify-between">
-                <div className="m-2 p-2 overflow-auto" id="chat-container">
+                <div className="m-2 p-2 overflow-auto" id="chat-container" style={{ height }}>
                     <ChatContainer />
                 </div>
                 <TextField />
