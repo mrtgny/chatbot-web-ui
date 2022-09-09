@@ -7,6 +7,9 @@ import store from 'redux/store';
 import { preventZoom } from 'utils/functions';
 import '../styles/globals.css';
 
+const APP_NAME = 'Coffee BOT';
+const APP_DESCRIPTION = 'A Coffee shop bot.';
+
 function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
@@ -20,8 +23,15 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>Lecture Schedule</title>
           <meta
             name="viewport"
-            content={`user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, viewport-fit=cover`}
+            content={`user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover`}
           />
+          <meta name="application-name" content={APP_NAME} />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+          <meta name="apple-mobile-web-app-title" content={APP_NAME} />
+          <meta name="description" content={APP_DESCRIPTION} />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
         </Head>
         <Component {...pageProps} />
         <GoogleAnalytics gaId="G-J6J4YTCSJH" />

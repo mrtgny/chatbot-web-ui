@@ -9,7 +9,7 @@ const ChatBot = () => {
 
     const onOpen = useCallback(() => {
         sendData(JSON.stringify({ message: "init-chatbot" }))
-    }, [])
+    }, [sendData])
 
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const ChatBot = () => {
 
     return (
         <div className="page flex justify-center items-center">
-            <div className="container flex flex-col justify-between">
+            <div className="container flex flex-col">
                 <div className="m-2 p-2 overflow-auto" id="chat-container" style={{ height }}>
                     <ChatContainer />
                 </div>
