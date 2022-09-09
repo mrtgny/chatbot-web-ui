@@ -1,18 +1,16 @@
-import { isBrowser } from "utils/functions";
+import usePageHeight from "hooks/usePageHeight";
 
 const Welcome = () => {
-    const height = isBrowser() ? `calc(${window.innerHeight}px - 86px)` : `calc(100vh - 86px)`;
+    const [height] = usePageHeight();
     return (
-        <div className="page flex justify-center items-center">
-            <div className="container">
-                <div className="welcome-container h-full">
-                    <div className="flex flex-col items-center justify-around" style={{ height }}>
-                        <div className="welcome-title">
-                            Welcome to CoffeeInLove
-                        </div>
-                        <div className="welcome-dsc">
-                            Have you taste our delicious coffees?
-                        </div>
+        <div className="page flex justify-center items-center" >
+            <div className="container flex flex-col translate-x-0" style={{ height }}>
+                <div className="flex flex-col items-center justify-around welcome-container" style={{ height: 'inherit' }}>
+                    <div className="welcome-title">
+                        Welcome to CoffeeInLove
+                    </div>
+                    <div className="welcome-dsc">
+                        Have you taste our delicious coffees?
                     </div>
                 </div>
             </div>

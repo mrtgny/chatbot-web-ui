@@ -166,6 +166,33 @@ const stopPropagation: MouseEventHandler<any> = (e) => {
     e.stopPropagation();
 }
 
+const isMobile = {
+    Android: function () {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function () {
+        return (
+            isMobile.Android() ||
+            isMobile.BlackBerry() ||
+            isMobile.iOS() ||
+            isMobile.Opera() ||
+            isMobile.Windows()
+        );
+    },
+};
+
 const getInitialValues = () => {
     if (!isBrowser()) return [];
     const localStorageValues = getLocalStorageValues();
@@ -176,4 +203,4 @@ const getInitialValues = () => {
     return values
 }
 
-export { dateToPastTime, dateToTime, preventZoom, dateToStr, capitalize, isBrowser, getRandomColor, abbreviateNumber, getInitialLectures, getSchedule, getTimes, getInitialValues, stopPropagation };
+export { isMobile, dateToPastTime, dateToTime, preventZoom, dateToStr, capitalize, isBrowser, getRandomColor, abbreviateNumber, getInitialLectures, getSchedule, getTimes, getInitialValues, stopPropagation };

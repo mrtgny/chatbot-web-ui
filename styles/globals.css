@@ -47,7 +47,6 @@ body {
 .container {
   width: 70%;
   background-color: rgba(0, 0, 0, 0.3);
-  height: calc(100vh - 32px);
 }
 
 @media screen and (max-width: 720px) {
@@ -59,7 +58,6 @@ body {
 
 .page {
   width: 100%;
-  min-height: 100vh;
 }
 
 .margin-center {
@@ -202,6 +200,7 @@ body {
 
 .welcome-title {
   font-size: 64px;
+  line-height: 1.2;
   font-weight: bolder;
   color: white;
   margin: 16px;
@@ -218,11 +217,7 @@ body {
   font-style: italic;
 }
 
-.spread-column {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+.welcome-container {
   animation: 3s fade-in-out backwards;
 }
 

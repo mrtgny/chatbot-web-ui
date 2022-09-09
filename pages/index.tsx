@@ -16,7 +16,7 @@ const Home: NextPage = () => {
     }, [])
 
     return (
-        <div className="min-w-[100vw] min-h-[100vh]">
+        <div className="min-w-[100vw]">
             <Show showIf={init}>
                 <SocketProvider url={WS_URL} wss>
                     <ChatBot />
