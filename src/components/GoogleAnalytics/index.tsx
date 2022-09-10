@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Script from "next/script";
 import { FC } from "react";
 import { IGoogleAnalyticsProps } from "./types";
@@ -8,7 +9,7 @@ const GoogleAnalytics: FC<IGoogleAnalyticsProps> = ({
     if (process.env.NODE_ENV === "development")
         return null;
     return (
-        <>
+        <Head>
             <Script
                 src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
             />
@@ -21,7 +22,7 @@ const GoogleAnalytics: FC<IGoogleAnalyticsProps> = ({
           `
             }} >
             </Script>
-        </>
+        </Head>
     )
 }
 

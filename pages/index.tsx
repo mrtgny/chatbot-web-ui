@@ -9,7 +9,7 @@ const WS_URL = 'coffeebot.mrtgny.com/ws';
 // const WS_URL = 'localhost:8000/ws';
 
 const Home: NextPage = () => {
-    const [init, setInit] = useState(true);
+    const [init, setInit] = useState(false);
     useEffect(() => {
         setTimeout(() => {
             setInit(true);
