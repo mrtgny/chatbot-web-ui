@@ -14,7 +14,7 @@ const ChatContainer = () => {
         console.log(json);
         if (json && !!json.suggest) return;
         dispatch(addMessage({ message: json }))
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         const container = document.getElementById("chat-container");

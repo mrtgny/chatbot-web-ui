@@ -1,4 +1,4 @@
-import GoogleAnalytics from 'components/GoogleAnalytics';
+import { GoogleAnalytics } from '@reactivers/next-ga';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect } from 'react';

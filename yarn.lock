@@ -255,6 +255,11 @@
     "@react-spring/shared" "~9.5.2"
     "@react-spring/types" "~9.5.2"
 
+"@reactivers/next-ga@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@reactivers/next-ga/-/next-ga-1.0.0.tgz#4de74c8201bf7c24747d330efc190fce9e9bae4b"
+  integrity sha512-c4FW8VV83Qmn6sDXQrCLg/xHhagg/qe3xth47mYVPhTtx7Ciytm8IVTr2fHO8kRd3vwqiFUIdsiixAlFNdbKQA==
+
 "@reactivers/use-socket@^1.0.2":
   version "1.0.2"
   resolved "https://registry.npmjs.org/@reactivers/use-socket/-/use-socket-1.0.2.tgz#117f786e093e70fb0d2461f1235744e821c44248"
