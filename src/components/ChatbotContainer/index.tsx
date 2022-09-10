@@ -1,17 +1,19 @@
 import { useSocket } from "@reactivers/use-socket";
 import ChatContent from "components/ChatContent";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
+import { addMessage } from "redux/features/chat";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { IMessage } from "utils/types";
 
 const ChatContainer = () => {
-    const [messages, setMessages] = useState<IMessage[]>([]);
+    const messages = useAppSelector(state => state?.chat?.messages);
+    const dispatch = useAppDispatch()
     const { connect } = useSocket()
 
     const onMessage: (data: any, json: IMessage) => void = useCallback((_, json) => {
+        console.log(json);
         if (json && !!json.suggest) return;
-        setMessages(old => {
-            return [...old.filter(i => json.status === 'typing' || i.status !== 'typing'), json]
-        })
+        dispatch(addMessage({ message: json }))
     }, [])
 
     useEffect(() => {

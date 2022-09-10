@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import scheduleReducer from './features/schedule';
+import chatReducer from './features/chat';
 
 const store = configureStore({
     reducer: {
-        schedule: scheduleReducer
+        chat: chatReducer
     }
 })
 

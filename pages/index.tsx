@@ -6,9 +6,10 @@ import { NextPage } from 'next/types';
 import { useEffect, useState } from 'react';
 
 const WS_URL = 'coffeebot.mrtgny.com/ws';
+// const WS_URL = 'localhost:8000/ws';
 
 const Home: NextPage = () => {
-    const [init, setInit] = useState(false);
+    const [init, setInit] = useState(true);
     useEffect(() => {
         setTimeout(() => {
             setInit(true);
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
     return (
         <div className="min-w-[100vw]">
             <Show showIf={init}>
-                <SocketProvider url={WS_URL} wss>
+                <SocketProvider url={WS_URL} wss={false}>
                     <ChatBot />
                 </SocketProvider>
             </Show>

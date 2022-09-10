@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { ILecture } from "redux/features/schedule/types";
+import { ILecture } from "redux/features/chat/types";
 import { INITIAL_LECTURE, INITIAL_VALUES } from "./constants";
 
 const isBrowser = () => typeof window !== "undefined";
@@ -101,13 +101,6 @@ const getInitialLectures: () => ILecture[] = () => {
     return lectures
 }
 
-const getSchedule: () => string[][] = () => {
-    if (!isBrowser()) return [];
-    const schedule = Array(10).fill(Array(6).fill(1));
-    return schedule
-}
-
-
 const makeMinuteString = (minute: number) => {
     const isStartTimeMinutesZero = minute < 10
     if (isStartTimeMinutesZero)`0${minute}`
@@ -203,4 +196,4 @@ const getInitialValues = () => {
     return values
 }
 
-export { isMobile, dateToPastTime, dateToTime, preventZoom, dateToStr, capitalize, isBrowser, getRandomColor, abbreviateNumber, getInitialLectures, getSchedule, getTimes, getInitialValues, stopPropagation };
+export { isMobile, dateToPastTime, dateToTime, preventZoom, dateToStr, capitalize, isBrowser, getRandomColor, abbreviateNumber, getInitialLectures, getTimes, getInitialValues, stopPropagation };

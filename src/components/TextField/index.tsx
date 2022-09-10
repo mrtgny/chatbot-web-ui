@@ -2,9 +2,12 @@ import { useSocket } from "@reactivers/use-socket";
 import SendButton from "components/SendButton";
 import Suggestions from "components/Suggestions";
 import { useEffect, useRef, useState } from "react";
+import { addMessage } from "redux/features/chat";
+import { useAppDispatch } from "redux/hooks";
 
 const TextField = () => {
     const { connect, sendData } = useSocket()
+    const dispatch = useAppDispatch();
     const [message, setMessage] = useState('');
     const textField = useRef<HTMLInputElement>(null);
 
@@ -17,9 +20,10 @@ const TextField = () => {
         const request = {
             author: "user",
             message,
-            date: new Date()
+            date: new Date().toString()
         };
         sendMessage(request);
+        dispatch(addMessage({ message: request }));
         setMessage("")
 
     }
@@ -29,7 +33,7 @@ const TextField = () => {
             author: "user",
             message: value,
             suggest: true,
-            date: new Date()
+            date: new Date().toString()
         };
         sendMessage(request);
         setMessage(value);

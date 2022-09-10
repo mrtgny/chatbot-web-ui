@@ -1,17 +1,22 @@
 import { useSocket } from "@reactivers/use-socket";
 import Option from "components/Option";
 import { FC, useEffect } from "react";
+import { addMessage } from "redux/features/chat";
+import { useAppDispatch } from "redux/hooks";
 import { IOptionsProps } from "./types";
 
 const Options: FC<IOptionsProps> = ({ options }) => {
     const { connect, sendData } = useSocket()
+    const dispatch = useAppDispatch();
 
     const onClick = (option: string) => {
-        sendData(JSON.stringify({
+        const request = {
             author: "user",
             message: option,
-            date: new Date()
-        }))
+            date: new Date().toString()
+        };
+        sendData(JSON.stringify(request))
+        dispatch(addMessage({ message: request }))
     }
 
     useEffect(() => {

@@ -1,18 +1,23 @@
 import { useSocket } from "@reactivers/use-socket";
 import { FC, useEffect } from "react";
+import { addMessage } from "redux/features/chat";
+import { useAppDispatch } from "redux/hooks";
 import { AUTHOR_ENUM } from "utils/types";
 import { IListProps } from "./types";
 
 const List: FC<IListProps> = ({ message }) => {
     const { list } = message;
     const { connect, sendData } = useSocket()
+    const dispatch = useAppDispatch();
 
     const onClick = (listItem: string) => {
-        sendData(JSON.stringify({
+        const request = {
             author: AUTHOR_ENUM.USER,
             message: listItem,
-            date: new Date()
-        }))
+            date: new Date().toString()
+        }
+        sendData(JSON.stringify(request))
+        dispatch(addMessage({ message: request }))
     }
 
     useEffect(() => {
