@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     return (
         <div className="min-w-[100vw]">
             <Show showIf={init}>
-                <SocketProvider url={WS_URL} wss={false}>
+                <SocketProvider url={WS_URL} wss={true}>
                     <ChatBot />
                 </SocketProvider>
             </Show>
