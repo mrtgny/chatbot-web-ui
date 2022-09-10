@@ -13,7 +13,6 @@ class MyDocument extends Document {
             "Murat Güney",
             "Murat Guney",
             "mrtgny",
-            "Lecture",
             "Chatbot",
             "Coffee bot",
             "University",
