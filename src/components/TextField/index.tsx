@@ -17,6 +17,7 @@ const TextField = () => {
 
     const onSend = () => {
         if (!message) return;
+        if (textField.current) textField.current.focus()
         const request = {
             author: "user",
             message,
