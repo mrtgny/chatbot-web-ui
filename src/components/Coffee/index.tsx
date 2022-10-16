@@ -1,5 +1,5 @@
-import CoffeeCup from "assets/images/coffee-cup.png";
 import { FC } from "react";
+import { APP_CDN_API } from "utils/constants";
 import { ICoffeeProps } from "./types";
 
 const Coffee: FC<ICoffeeProps> = ({ name, size, count, coffee }) => {
@@ -23,7 +23,7 @@ const Coffee: FC<ICoffeeProps> = ({ name, size, count, coffee }) => {
                     x{count}
                 </div>
             </div>
-            <img src={CoffeeCup.src} alt="Coffee Cup" className="coffee-cup-image" style={{ width }} />
+            <img src={`${APP_CDN_API}/rt:fit/rs:auto:${width}/plain/s3://website-images/coffee-cup.png`} alt="Coffee Cup" className="coffee-cup-image" style={{ width }} />
             <div className="coffee-cup-name" style={nameStyle}>
                 {name}
             </div>

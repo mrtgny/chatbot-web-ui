@@ -39,7 +39,7 @@ a {
 
 
 body {
-  background: url("../src/assets/images/coffee-shop-bg.jpg") left center no-repeat;
+  background: url("https://cdn.mrtgny.com/rt:fit/rs:auto/plain/s3://website-images/coffee-shop-bg.jpg") left center no-repeat;
   background-size: cover;
 
 }
@@ -274,6 +274,7 @@ body {
   position: absolute;
   right: -16px;
   top: 0;
+  z-index: 1;
   width: 30px;
   height: 30px;
   border-radius: 30px;

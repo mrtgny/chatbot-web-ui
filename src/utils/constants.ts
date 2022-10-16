@@ -12,6 +12,6 @@ const SAFE_ARE = {
     LEFT: 'var(--safe-area-inset-left, env(safe-area-inset-left))',
 };
 
-
+export const APP_CDN_API = process.env.NEXT_PUBLIC_APP_CDN_API
 export { FORM_LAYOUT, SAFE_ARE };
 
