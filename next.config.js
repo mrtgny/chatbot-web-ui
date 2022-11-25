@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    loader: "custom"
-  }
-}
+    loader: "custom",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

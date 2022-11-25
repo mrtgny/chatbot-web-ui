@@ -1,3 +1,3 @@
 export interface IOptionsProps {
-    options: string[];
+  options: string[];
 }

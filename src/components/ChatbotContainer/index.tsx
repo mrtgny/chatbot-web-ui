@@ -6,31 +6,33 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { IMessage } from "utils/types";
 
 const ChatContainer = () => {
-    const messages = useAppSelector(state => state?.chat?.messages);
-    const dispatch = useAppDispatch()
-    const { connect } = useSocket()
+  const messages = useAppSelector((state) => state?.chat?.messages);
+  const dispatch = useAppDispatch();
+  const { connect } = useSocket();
 
-    const onMessage: (data: any, json: IMessage) => void = useCallback((_, json) => {
-        console.log(json);
-        if (json && !!json.suggest) return;
-        dispatch(addMessage({ message: json }))
-    }, [dispatch])
+  const onMessage: (data: any, json: IMessage) => void = useCallback(
+    (_, json) => {
+      console.log(json);
+      if (json && !!json.suggest) return;
+      dispatch(addMessage({ message: json }));
+    },
+    [dispatch]
+  );
 
-    useEffect(() => {
-        const container = document.getElementById("chat-container");
-        container.scrollTo(0, container.scrollHeight);
-    }, [messages])
+  useEffect(() => {
+    const container = document.getElementById("chat-container");
+    container.scrollTo(0, container.scrollHeight);
+  }, [messages]);
 
+  useEffect(() => {
+    connect({ onMessage });
+  }, [connect, onMessage]);
 
-    useEffect(() => {
-        connect({ onMessage })
-    }, [connect, onMessage])
-
-    return (
-        <div className="w-full h-full" >
-            <ChatContent messages={messages} />
-        </div>
-    );
-}
+  return (
+    <div className="w-full h-full">
+      <ChatContent messages={messages} />
+    </div>
+  );
+};
 
 export default ChatContainer;

@@ -37,11 +37,10 @@ a {
   box-sizing: border-box;
 }
 
-
 body {
-  background: url("https://cdn.mrtgny.com/https://imgproxy.mrtgny.com/rt:fit/rs:auto/plain/s3://website-images/coffee-shop-bg.jpg") left center no-repeat;
+  background: url("https://cdn.mrtgny.com/https://imgproxy.mrtgny.com/rt:fit/rs:auto/plain/s3://website-images/coffee-shop-bg.jpg")
+    left center no-repeat;
   background-size: cover;
-
 }
 
 .container {
@@ -124,7 +123,7 @@ body {
   border-radius: 40px;
   font-size: 24px;
   color: white;
-  background-color: #2196F3;
+  background-color: #2196f3;
   cursor: pointer;
 }
 
@@ -160,7 +159,6 @@ body {
   transition: 0.4s;
 }
 
-
 .list {
   display: flex;
 }
@@ -173,7 +171,6 @@ body {
   to {
     transform: scaleY(1);
   }
-
 }
 
 .clickable:hover {
@@ -284,20 +281,22 @@ body {
 }
 
 @font-face {
-  font-family: 'Hand Written';
+  font-family: "Hand Written";
   src: url("../src/assets/fonts/handwritten.ttf");
 }
 
 @font-face {
-  font-family: 'Hand Written 2';
+  font-family: "Hand Written 2";
   src: url("../src/assets/fonts/handwritten2.otf");
 }
 
-input, textarea {
+input,
+textarea {
   outline: none;
   border: 1px solid #cccccc;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border: 1px solid #a0a0a0;
 }

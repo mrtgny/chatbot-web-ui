@@ -1,3 +1,3 @@
 export interface IDateTextProps {
-    date: string;
+  date: string;
 }

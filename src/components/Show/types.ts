@@ -1,5 +1,5 @@
 interface IShow {
-    showIf: boolean;
+  showIf: boolean;
 }
 
 export type { IShow };

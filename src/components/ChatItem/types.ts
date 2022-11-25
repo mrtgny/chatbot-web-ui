@@ -1,5 +1,5 @@
 import { IMessage } from "utils/types";
 
 export interface IChatItemProps {
-    message: IMessage
+  message: IMessage;
 }
