@@ -4,6 +4,7 @@ import Suggestions from "components/Suggestions";
 import { useEffect, useRef, useState } from "react";
 import { addMessage } from "redux/features/chat";
 import { useAppDispatch } from "redux/hooks";
+import { AUTHOR_ENUM, ISendMessage } from "utils/types";
 
 const TextField = () => {
   const { connect, sendData } = useSocket();
@@ -11,15 +12,15 @@ const TextField = () => {
   const [message, setMessage] = useState("");
   const textField = useRef<HTMLInputElement>(null);
 
-  const sendMessage = (messageData) => {
+  const sendMessage = (messageData: ISendMessage) => {
     sendData(JSON.stringify(messageData));
   };
 
   const onSend = () => {
     if (!message) return;
     if (textField.current) textField.current.focus();
-    const request = {
-      author: "user",
+    const request: ISendMessage = {
+      author: AUTHOR_ENUM.USER,
       message,
       date: new Date().toString(),
     };
@@ -28,9 +29,9 @@ const TextField = () => {
     setMessage("");
   };
 
-  const onChange = (value) => {
-    const request = {
-      author: "user",
+  const onChange = (value: string) => {
+    const request: ISendMessage = {
+      author: AUTHOR_ENUM.USER,
       message: value,
       suggest: true,
       date: new Date().toString(),

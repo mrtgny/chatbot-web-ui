@@ -10,9 +10,16 @@ export interface IMessage {
   options?: string[];
   coffees?: ICoffee[];
   name?: string;
-  message: string;
+  message: string | string[];
   status: "typing" | undefined;
   suggest?: boolean;
+}
+
+export interface ISendMessage {
+  author: AUTHOR_ENUM;
+  message: string;
+  suggest?: boolean;
+  date: string;
 }
 
 export enum SIZE_ENUM {
@@ -25,8 +32,4 @@ export interface ICoffee {
   size: SIZE_ENUM;
   count: number;
   coffee: string;
-}
-
-export interface Dict<T = {}> {
-  [key: string]: T;
 }

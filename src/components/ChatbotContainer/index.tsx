@@ -10,18 +10,18 @@ const ChatContainer = () => {
   const dispatch = useAppDispatch();
   const { connect } = useSocket();
 
-  const onMessage: (data: any, json: IMessage) => void = useCallback(
+  const onMessage: (data: unknown, json: IMessage) => void = useCallback(
     (_, json) => {
       console.log(json);
       if (json && !!json.suggest) return;
       dispatch(addMessage({ message: json }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   useEffect(() => {
     const container = document.getElementById("chat-container");
-    container.scrollTo(0, container.scrollHeight);
+    container?.scrollTo(0, container?.scrollHeight);
   }, [messages]);
 
   useEffect(() => {

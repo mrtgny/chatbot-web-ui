@@ -7,10 +7,12 @@
     "dev-prod": "APP_ENV=production next dev",
     "build": "rm -rf out .next && APP_ENV=development next build",
     "build-prod": "rm -rf out .next && APP_ENV=production next build",
+    "format": "npx prettier --write \"src/**/*.{ts,tsx}\" \"pages/**/*.{ts,tsx}\"",
     "start": "next start",
     "export": "npm run build && next export",
     "export-prod": "npm run build-prod && next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reactivers/next-ga": "^1.0.0",
@@ -31,6 +33,11 @@
     "tailwindcss": "^3.1.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.5.0",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "husky": "^8.0.3",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",

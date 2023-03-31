@@ -1,7 +1,7 @@
-import { MutableRefObject } from "react";
+import { RefObject } from "react";
 
 export interface ISuggestionsProps {
-  textFieldRef: MutableRefObject<HTMLInputElement>;
+  textFieldRef: RefObject<HTMLInputElement>;
   onChange: (message: string) => void;
   message: string;
 }

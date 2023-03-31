@@ -28,7 +28,7 @@ const List: FC<IListProps> = ({ message }) => {
     <div className="list flex justify-center items-center">
       <div className="m-2 p-2 w-full">
         <ul className="list-none m-0 p-0 w-full">
-          {list.map((listItem, index) => {
+          {list?.map((listItem, index) => {
             return (
               <li
                 key={index}

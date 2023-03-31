@@ -17,8 +17,8 @@ const ChatContent: FC<IChatContentProps> = ({ messages }) => {
         const isOptions = (options || []).length > 0;
         return (
           <Fragment key={index}>
-            <Show showIf={!!name}>
-              <Coffees name={name} coffees={coffees} />
+            <Show showIf={!!name && !!coffees}>
+              <Coffees name={name!} coffees={coffees!} />
             </Show>
             <Show showIf={isTyping}>
               <Typing />
@@ -30,7 +30,7 @@ const ChatContent: FC<IChatContentProps> = ({ messages }) => {
               <List message={item} />
             </Show>
             <Show showIf={isOptions}>
-              <Options options={options} />
+              <Options options={options!} />
             </Show>
           </Fragment>
         );

@@ -1,5 +1,6 @@
 import { useSocket } from "@reactivers/use-socket";
 import { FC, useCallback, useEffect, useState } from "react";
+import { IMessage } from "utils/types";
 import { ISuggestionsProps } from "./types";
 
 const Suggestions: FC<ISuggestionsProps> = ({
@@ -7,11 +8,11 @@ const Suggestions: FC<ISuggestionsProps> = ({
   onChange,
   message,
 }) => {
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   const { connect } = useSocket();
 
-  const onSelect = (suggest) => {
+  const onSelect = (suggest: string) => {
     if (suggest.indexOf(message) === 0) {
       onChange(suggest + " ");
     } else {
@@ -19,12 +20,12 @@ const Suggestions: FC<ISuggestionsProps> = ({
       splittedValue = splittedValue.slice(0, splittedValue.length - 1);
       onChange(splittedValue.join(" ") + " " + suggest + " ");
     }
-    textFieldRef.current.focus();
+    textFieldRef.current?.focus();
   };
 
-  const onMessage = useCallback((_, json) => {
+  const onMessage = useCallback((_: unknown, json: IMessage) => {
     if (json && json.suggest) {
-      setSuggestions(json.message);
+      setSuggestions(json.message as string[]);
     }
   }, []);
 

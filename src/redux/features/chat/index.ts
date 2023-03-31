@@ -12,7 +12,7 @@ export const chatSlice = createSlice({
       console.log(message);
       state.messages = [
         ...state.messages.filter(
-          (i) => message.status === "typing" || i.status !== "typing"
+          (i) => message.status === "typing" || i.status !== "typing",
         ),
         message,
       ];

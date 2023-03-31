@@ -4,7 +4,7 @@ import { APP_CDN_API } from "./constants";
 
 const isBrowser = () => typeof window !== "undefined";
 
-const dateToTime = (date, ff = "DD MMMM YYYY") => {
+const dateToTime = (date: Date | string) => {
   if (!date) return "";
   if (typeof date === "string") {
     date = new Date(date);
@@ -24,27 +24,25 @@ const dateToPastTime = (_date: Date) => {
 };
 
 const preventZoom = () => {
-  document.addEventListener(
-    "touchmove",
-    function (event) {
-      if (event["scale"] !== undefined && event["scale"] !== 1) {
-        event.preventDefault();
-      }
-    },
-    { passive: false }
-  );
-  var lastTouchEnd = 0;
-  document.addEventListener(
-    "touchend",
-    function (event) {
-      var now = new Date().getTime();
-      if (now - lastTouchEnd <= 300) {
-        event.preventDefault();
-      }
-      lastTouchEnd = now;
-    },
-    false
-  );
+  let lastTouchEnd = 0;
+  const onTouchMove: EventListener = (event: Event) => {
+    if (event.scale !== undefined && event.scale !== 1) {
+      event.preventDefault();
+    }
+  };
+  const onTouchEnd = (event: TouchEvent) => {
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  };
+  document.addEventListener("touchmove", onTouchMove, { passive: false });
+  document.addEventListener("touchend", onTouchEnd, false);
+  return () => {
+    document.removeEventListener("touchmove", onTouchMove);
+    document.removeEventListener("touchend", onTouchEnd);
+  };
 };
 
 const getRandomColor = () => {
@@ -58,7 +56,7 @@ const getRandomColor = () => {
 
 const capitalize = (word: string) => {
   if (word) return word;
-  let _word = word.split("");
+  const _word = word.split("");
   _word[0] = _word[0].toUpperCase();
   return _word;
 };
@@ -68,32 +66,7 @@ function dateToStr(date: string) {
   return new Date(date).toLocaleString();
 }
 
-function abbreviateNumber(value) {
-  var newValue = value;
-  if (value >= 1000) {
-    var suffixes = ["", "k", "m", "b", "t"];
-    var suffixNum = Math.floor(("" + value).length / 3);
-    var shortValue: string | number = "";
-    for (var precision = 2; precision >= 1; precision--) {
-      shortValue = parseFloat(
-        (suffixNum != 0
-          ? value / Math.pow(1000, suffixNum)
-          : value
-        ).toPrecision(precision)
-      );
-      var dotLessShortValue = (shortValue + "").replace(/[^a-zA-Z 0-9]+/g, "");
-      if (dotLessShortValue.length <= 2) {
-        break;
-      }
-    }
-    if ((shortValue as number) % 1 != 0)
-      shortValue = (shortValue as number).toFixed(1);
-    newValue = shortValue + suffixes[suffixNum];
-  }
-  return newValue as string;
-}
-
-const stopPropagation: MouseEventHandler<any> = (e) => {
+const stopPropagation: MouseEventHandler = (e) => {
   e.stopPropagation();
 };
 
@@ -140,6 +113,5 @@ export {
   capitalize,
   isBrowser,
   getRandomColor,
-  abbreviateNumber,
   stopPropagation,
 };
