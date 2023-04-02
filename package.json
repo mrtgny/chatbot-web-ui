@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@reactivers/next-ga": "^1.0.0",
-    "@reactivers/use-socket": "^1.0.2",
+    "@reactivers/use-socket": "^1.0.3",
     "@reduxjs/toolkit": "^1.8.4",
     "@types/react-color": "^3.0.6",
     "autoprefixer": "^10.4.7",

@@ -8,11 +8,10 @@ import { IMessage } from "utils/types";
 const ChatContainer = () => {
   const messages = useAppSelector((state) => state?.chat?.messages);
   const dispatch = useAppDispatch();
-  const { connect } = useSocket();
+  const { connect } = useSocket<IMessage>();
 
   const onMessage: (data: unknown, json: IMessage) => void = useCallback(
     (_, json) => {
-      console.log(json);
       if (json && !!json.suggest) return;
       dispatch(addMessage({ message: json }));
     },

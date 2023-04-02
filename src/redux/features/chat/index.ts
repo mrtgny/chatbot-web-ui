@@ -9,7 +9,6 @@ export const chatSlice = createSlice({
   reducers: {
     addMessage: (state, action) => {
       const { message } = action.payload;
-      console.log(message);
       state.messages = [
         ...state.messages.filter(
           (i) => message.status === "typing" || i.status !== "typing",

@@ -24,7 +24,7 @@ const Coffee: FC<ICoffeeProps> = ({ name, size, count, coffee }) => {
       <img
         src={`${APP_CDN_API}/rt:fit/rs:auto:${width}/plain/s3://website-images/coffee-cup.png`}
         alt="Coffee Cup"
-        className="coffee-cup-image"
+        className="coffee-cup-image min-h-[150px]"
         style={{ width }}
       />
       <div className="coffee-cup-name" style={nameStyle}>

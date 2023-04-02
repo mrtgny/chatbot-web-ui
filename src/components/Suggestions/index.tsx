@@ -10,7 +10,7 @@ const Suggestions: FC<ISuggestionsProps> = ({
 }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  const { connect } = useSocket();
+  const { connect } = useSocket<IMessage>();
 
   const onSelect = (suggest: string) => {
     if (suggest.indexOf(message) === 0) {
