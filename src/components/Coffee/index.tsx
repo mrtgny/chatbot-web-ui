@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { APP_CDN_API } from "utils/constants";
+import { APP_CDN_API, IMG_PROXY_API } from "utils/constants";
 import { ICoffeeProps } from "./types";
 
 const Coffee: FC<ICoffeeProps> = ({ name, size, count, coffee }) => {
@@ -22,7 +22,7 @@ const Coffee: FC<ICoffeeProps> = ({ name, size, count, coffee }) => {
         <div className="flex justify-center items-center h-full">x{count}</div>
       </div>
       <img
-        src={`${APP_CDN_API}/rt:fit/rs:auto:${width}/plain/s3://website-images/coffee-cup.png`}
+        src={`${APP_CDN_API}/${IMG_PROXY_API}/rt:fit/rs:auto:${width}/plain/s3://website-images/coffee-cup.png`}
         alt="Coffee Cup"
         className="coffee-cup-image min-h-[150px]"
         style={{ width }}

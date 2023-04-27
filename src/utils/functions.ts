@@ -1,6 +1,6 @@
 import { ImageLoader } from "next/image";
 import { MouseEventHandler } from "react";
-import { APP_CDN_API } from "./constants";
+import { APP_CDN_API, IMG_PROXY_API } from "./constants";
 
 const isBrowser = () => typeof window !== "undefined";
 
@@ -101,7 +101,7 @@ const isMobile = {
 };
 
 export const cdnLoader: ImageLoader = ({ src, width, quality = 100 }) => {
-  return `${APP_CDN_API}/rt:fit/rs:auto:${width}/q:${quality}/plain/s3://website-images/${src}`;
+  return `${APP_CDN_API}/${IMG_PROXY_API}/rt:fit/rs:auto:${width}/q:${quality}/plain/s3://website-images/${src}`;
 };
 
 export {

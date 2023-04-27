@@ -13,4 +13,5 @@ const SAFE_ARE = {
 };
 
 export const APP_CDN_API = process.env.NEXT_PUBLIC_APP_CDN_API;
+export const IMG_PROXY_API = process.env.NEXT_PUBLIC_IMG_PROXY;
 export { FORM_LAYOUT, SAFE_ARE };
