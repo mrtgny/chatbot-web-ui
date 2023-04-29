@@ -5,7 +5,7 @@ import Welcome from "components/Welcome";
 import { NextPage } from "next/types";
 import { useEffect, useState } from "react";
 
-const WS_URL = "coffeebot.mrtgny.com/ws";
+const WS_URL = "coffeebot.appysode.com/ws";
 const wss = true;
 // const WS_URL = 'localhost:8000/ws';
 // const wss = false;
