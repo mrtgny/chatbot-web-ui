@@ -20,6 +20,7 @@ class MyDocument extends Document {
       "Murat Guney",
       "mrtgny",
       "Chatbot",
+      "Appysode",
       "Coffee bot",
       "University",
       "Coffee Shop Chatbot",

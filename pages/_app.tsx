@@ -6,9 +6,10 @@ import { Provider } from "react-redux";
 import store from "redux/store";
 import { preventZoom } from "utils/functions";
 import "../styles/globals.css";
+import { OGHead } from "@reactivers/next-og";
 
-const APP_NAME = "Coffee BOT";
-const APP_DESCRIPTION = "A Coffee shop bot.";
+const APP_NAME = "Coffeebot | Murat Güney";
+const APP_DESCRIPTION = "A Coffee shop bot. | Murat Güney";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -19,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Provider store={store}>
         <Head>
-          <title>Coffeebot</title>
+          <title>{APP_NAME}</title>
           <meta
             name="viewport"
             content={`user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover`}
@@ -35,6 +36,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
         </Head>
+        <OGHead
+          title={APP_NAME}
+          description={APP_DESCRIPTION}
+          url={`https://coffeebot.appysode.com`}
+        />
         <Component {...pageProps} />
         <GoogleAnalytics gaId="G-J6J4YTCSJH" />
       </Provider>

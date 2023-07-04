@@ -1,12 +1,16 @@
 FROM alpine as base
 RUN apk add --update nodejs npm
 WORKDIR /usr/src/app
-COPY . .
 
 RUN npm i -g yarn
-RUN yarn install --frozen-lockfile --network-timeout 100000
 
-RUN npm run export
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --network-timeout 100000
+COPY . .
+
+RUN npm run build
+RUN npm run sitemap
+RUN npm run export:only
 
 FROM nginx:alpine
 WORKDIR /usr/src/app
